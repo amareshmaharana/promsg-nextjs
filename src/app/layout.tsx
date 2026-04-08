@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
+import { cn } from "@/lib/utils";
+
+const instrumentSansHeading = Instrument_Sans({subsets:['latin'],variable:'--font-heading'});
+
+const spaceGrotesk = Space_Grotesk({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", spaceGrotesk.variable, instrumentSansHeading.variable)}
     >
       <AuthProvider>
         <body className="min-h-full flex flex-col">{children}</body>
